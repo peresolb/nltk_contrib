@@ -93,10 +93,10 @@ class TreebankConverter(object):
         children = []
         for child in penn_tree:
             if len(child) == 1 and isinstance(child[0], basestring):
-                edge, tag = graph.add_terminal(child[0], child.node)
+                edge, tag = graph.add_terminal(child[0], child.label())
                 self._pos_tags.add(tag)
             else:
-                edge, cat = graph.add_nonterminal(child.node, self._get_children(child, graph))
+                edge, cat = graph.add_nonterminal(child.label(), self._get_children(child, graph))
                 self._cats.add(cat)
             self._edge_labels.add(edge[0])
             children.append(edge)
